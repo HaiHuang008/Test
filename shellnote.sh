@@ -119,3 +119,14 @@ while true ;do
     esac
 done
 
+
+
+mac1=`./eeupdate64e /nic=1 /mac_dump | grep "LAN MAC Address" | awk '{print $6}' | sed 's/\.//g' | sed 's/\(..\)/\1:/g;s/:$//'`
+ifName=`ifconfig -a | grep -i -B 1 "$mac1" | head -n 1 | awk -F ":" '{print $1}'`
+
+if [ -z "${ifName}" ];then
+    echo "Error: The interface name is empty!"
+    exit 0
+else
+    echo "interface name is ${ifName}"
+fi
