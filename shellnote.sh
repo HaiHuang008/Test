@@ -130,3 +130,16 @@ if [ -z "${ifName}" ];then
 else
     echo "interface name is ${ifName}"
 fi
+
+
+
+
+# use for
+for i in {0..31}
+do
+        echo "############### AK200266-Serdes-Port $i ################"
+        grep -A 2 "CTLE" AK200266-Serdes-Port-$i.txt
+
+done
+
+
