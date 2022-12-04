@@ -4,16 +4,6 @@ function get_line() {
 for i in {1..5}
 do
          grep -n 'NO_SYNC' PRBS_Test_Group_$i.txt > Group_$i.txt
-         case $i in
-                1)
-                   echo "1"
-                ;;
-                2)
-                   echo "2"
-                ;;
-                *)
-                    echo ""
-          esac
 done
 }
 
@@ -31,7 +21,7 @@ do
                 num=` echo $line |cut -d ":" -f 1 `
                 case $i in
                         1)
-                        echo echo "Loop #"` expr $num / 736 + 1 `
+                        echo "Loop #"` expr $num / 736 + 1 `
                         ;;
                         2)
                         echo "Loop #"` expr $num / 736 + 101 `
