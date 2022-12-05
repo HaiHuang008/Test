@@ -8,6 +8,7 @@ done
 }
 
 get_line
+total_count=0
 for i in {1..5}
 do
         serial=`grep "SERIAL" PRBS_Test_Group_$i.txt`
@@ -21,25 +22,42 @@ do
                 num=` echo $line |cut -d ":" -f 1 `
                 case $i in
                         1)
-                        echo "Loop #"` expr $num / 736 + 1 `
+                        n=` expr $num / 736 + 1 `
+                        echo "                      lp#"$n
+                        echo "#"$n >> count_1.txt
                         ;;
                         2)
-                        echo "Loop #"` expr $num / 736 + 101 `
+                        n=` expr $num / 736 + 101 `
+                        echo "                      lp#"$n
+                        echo "#"$n >> count_2.txt
                         ;;
                         3)
-                        echo "Loop #"` expr $num / 736 + 201 `
+                        n=` expr $num / 736 + 201 `
+                        echo "                      lp#"$n
+                        echo "#"$n >> count_3.txt
                         ;;
                         4)
-                        echo "Loop #"` expr $num / 736 + 311 `
+                        n=` expr $num / 736 + 311 `
+                        echo "                      lp#"$n
+                        echo "#"$n >> count_4.txt
                         ;;
                         5)
-                        echo "Loop #"` expr $num / 736 + 411 `
+                        n=` expr $num / 736 + 411 `
+                        echo "                      lp#"$n
+                        echo "#"$n >> count_5.txt
                         ;;
                         *)
                         echo ""
                 esac
-                echo $line
+                echo ${line#*:}
         done < Group_$i.txt
+        count=`sort -u count_${i}.txt| wc -l`
+        total_count=$((${total_count}+${count}))
+        echo "PRBS_Test_Group_${i} failures count: "${count}
 done
+echo "******************************************************************************"
+echo "Total number of failures: "${total_count}
 
+rm count*
 rm Group*
+rm PRBS_Test_Group_*
