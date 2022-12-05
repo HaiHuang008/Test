@@ -1,4 +1,3 @@
-# build sdk docker image
 FROM ubuntu:16.04
 MAINTAINER YoungHuang
 
@@ -6,7 +5,9 @@ RUN apt-get update && apt-get install -y \
             apt-utils \
             iputils-ping \
             net-tools \
+            patch \
             vim \
+            unzip \
             curl \
             wget \
             make \
@@ -37,6 +38,7 @@ RUN perl -MCPAN -e install Spiffy &&  cpan install \
                   YAML::XS \
                   List::MoreUtils \
                   namespace::autoclean
+
 
 # install gcc-7.5.0
 RUN mkdir /home/gcc-tool && \
