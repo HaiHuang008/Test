@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
             gcc \
             g++ \
             subversion \
+            git \
             python-pip \
             bzip2 \
             python-yaml \
@@ -22,6 +23,7 @@ RUN apt-get update && apt-get install -y \
             libtool \
             bison \
             flex \
+            elfutils \
         && python -m pip install filelock==3.1.0 && \
            python -m pip install pyyaml && \
            rm -rf /var/lib/apt/lists/* && \
