@@ -55,7 +55,8 @@ int main(int argc, char * argv[])
 
                }
        }
-#else
+#endif
+#ifdef GETOPT_T
       int opt;
       char *string = "a::b:c:d";
       while((opt = getopt(argc, argv, string)) != -1){
