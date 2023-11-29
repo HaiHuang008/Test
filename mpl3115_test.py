@@ -1,0 +1,6 @@
+temp_raw_file = open('/sys/bus/i2c/devices/17-0060/iio:device0/in_temp_raw','r')
+temp_scale_file = open('/sys/bus/i2c/devices/17-0060/iio:device0/in_temp_scale','r')
+print "temperature: %.2f" %(int(temp_raw_file.read())*float(temp_scale_file.read()))
+pres_raw_file = open('/sys/bus/i2c/devices/17-0060/iio:device0/in_pressure_raw','r')
+pres_scale_file = open('/sys/bus/i2c/devices/17-0060/iio:device0/in_pressure_scale','r')
+print "pressure: %.4f" %(int(pres_raw_file.read())*float(pres_scale_file.read()))
